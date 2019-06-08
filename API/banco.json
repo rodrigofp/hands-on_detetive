@@ -1,0 +1,30 @@
+{
+    "Suspeitos": [
+        { "id": 1, "nome": "Esqueleto"}, 
+        { "id": 2, "nome": "Khan" },
+        { "id": 3, "nome": "Darth Vader" },
+        { "id": 4, "nome": "Sideshow Bob" },
+        { "id": 5, "nome": "Coringa" },
+        { "id": 6, "nome": "Duende Verde" }
+    ],
+    "Locais": [
+        { "id": 1, "nome": "Etérnia" },
+        { "id": 2, "nome": "Vulcano" },
+        { "id": 3, "nome": "Tatooine" },
+        { "id": 4, "nome": "Springfield" },
+        { "id": 5, "nome": "Gothan" },
+        { "id": 6, "nome": "Nova York" },
+        { "id": 7, "nome": "Sibéria" },
+        { "id": 8, "nome": "Machu Pichhu" },
+        { "id": 9, "nome": "Show do Katinguele" },
+        { "id": 10, "nome": "São Paulo" }
+    ],
+    "Armas": [
+        { "id": 1, "nome": "Cajado Devastador" },
+        { "id": 2, "nome": "Phaser" },
+        { "id": 3, "nome": "Peixeiro" },
+        { "id": 4, "nome": "Trezoitão" },
+        { "id": 5, "nome": "Sabre de Luz" },
+        { "id": 6, "nome": "Bomba" }
+    ]
+}
