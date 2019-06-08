@@ -1,0 +1,14 @@
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\bin\Debug\netcoreapp2.2\Detetive_API.deps.json
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\bin\Debug\netcoreapp2.2\Detetive_API.runtimeconfig.json
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\bin\Debug\netcoreapp2.2\Detetive_API.runtimeconfig.dev.json
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\bin\Debug\netcoreapp2.2\Detetive_API.dll
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\bin\Debug\netcoreapp2.2\Detetive_API.pdb
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\obj\Debug\netcoreapp2.2\Detetive_API.csprojAssemblyReference.cache
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\obj\Debug\netcoreapp2.2\Detetive_API.csproj.CoreCompileInputs.cache
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\obj\Debug\netcoreapp2.2\Detetive_API.RazorAssemblyInfo.cache
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\obj\Debug\netcoreapp2.2\Detetive_API.RazorAssemblyInfo.cs
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\obj\Debug\netcoreapp2.2\Detetive_API.AssemblyInfoInputs.cache
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\obj\Debug\netcoreapp2.2\Detetive_API.AssemblyInfo.cs
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\obj\Debug\netcoreapp2.2\Detetive_API.RazorTargetAssemblyInfo.cache
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\obj\Debug\netcoreapp2.2\Detetive_API.dll
+C:\Users\nonam\OneDrive\Documentos\Projetos\detetive\Detetive_API\obj\Debug\netcoreapp2.2\Detetive_API.pdb
