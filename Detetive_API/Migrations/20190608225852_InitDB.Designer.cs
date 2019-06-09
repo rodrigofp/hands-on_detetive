@@ -2,14 +2,16 @@
 using Detetive_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Detetive_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190608225852_InitDB")]
+    partial class InitDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,22 +123,6 @@ namespace Detetive_API.Migrations
                             Id = 10,
                             Nome = "São Paulo"
                         });
-                });
-
-            modelBuilder.Entity("Detetive_API.Models.SolucaoCrime", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ArmaId");
-
-                    b.Property<int>("LocalId");
-
-                    b.Property<int>("SuspeitoId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SolucaoCrimes");
                 });
 
             modelBuilder.Entity("Detetive_API.Models.Suspeito", b =>
