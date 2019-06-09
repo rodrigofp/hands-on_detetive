@@ -20,20 +20,6 @@ namespace Detetive_API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(int id)
-        {
-            try
-            {
-                var resultado = await _repo.GetSolucaoCrime(id);
-
-                return Ok(resultado);
-            }
-            catch (System.Exception ex)
-            {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, $"{ex.Message}.");
-            }
-        }
-        [HttpGet]
         public async Task<ActionResult> CompareWithTheory(SolucaoCrime model)
         {
             var solucao = await _repo.GetSolucaoCrime(model.Id);
