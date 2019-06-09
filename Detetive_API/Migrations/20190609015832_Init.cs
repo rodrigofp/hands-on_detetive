@@ -2,7 +2,7 @@
 
 namespace Detetive_API.Migrations
 {
-    public partial class InitDB : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,6 +30,21 @@ namespace Detetive_API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Locais", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SolucaoCrimes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    SuspeitoId = table.Column<int>(nullable: false),
+                    LocalId = table.Column<int>(nullable: false),
+                    ArmaId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SolucaoCrimes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -163,6 +178,9 @@ namespace Detetive_API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Locais");
+
+            migrationBuilder.DropTable(
+                name: "SolucaoCrimes");
 
             migrationBuilder.DropTable(
                 name: "Suspeitos");

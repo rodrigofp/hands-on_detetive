@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Detetive_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190608225852_InitDB")]
-    partial class InitDB
+    [Migration("20190609015832_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -123,6 +123,22 @@ namespace Detetive_API.Migrations
                             Id = 10,
                             Nome = "São Paulo"
                         });
+                });
+
+            modelBuilder.Entity("Detetive_API.Models.SolucaoCrime", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ArmaId");
+
+                    b.Property<int>("LocalId");
+
+                    b.Property<int>("SuspeitoId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SolucaoCrimes");
                 });
 
             modelBuilder.Entity("Detetive_API.Models.Suspeito", b =>

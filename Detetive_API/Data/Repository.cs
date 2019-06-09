@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Detetive_API.Models;
@@ -62,5 +63,6 @@ namespace Detetive_API.Data
 
             return await query.FirstOrDefaultAsync();
         }
+
     }
 }

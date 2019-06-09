@@ -13,21 +13,21 @@
     </button>
     <div v-if="iniciado && !finalizado">
       <label>Suspeito:</label>
-      <select v-model="teoria.suspeito">
+      <select v-model="teoria.SuspeitoId">
         <option v-for="Suspeito in Suspeitos" v-bind:value="Suspeito.id">
           {{Suspeito.nome}}
         </option>
       </select>
       <br><br>
       <label>Local:</label>
-      <select v-model="teoria.local">
+      <select v-model="teoria.LocalId">
         <option v-for="Local in Locais" v-bind:value="Local.id">
           {{Local.nome}}
         </option>
       </select>
       <br><br>
       <label>Arma:</label>
-      <select v-model="teoria.arma">
+      <select v-model="teoria.ArmaId">
         <option v-for="Arma in Armas" v-bind:value="Arma.id">
           {{Arma.nome}}
         </option>
@@ -60,13 +60,11 @@ export default {
   data(){
     return{
       teoria: {
-        suspeito: 1,
-        local: 1,
-        arma: 1,
+        Id: 0,
+        SuspeitoId: 1,
+        LocalId: 1,
+        ArmaId: 1,
       },
-      SuspeitoSelected: 0,
-      LocalSelected: 0,
-      ArmaSelected: 0,
       Suspeitos: [],
       Locais: [],
       Armas: [],
@@ -74,34 +72,47 @@ export default {
       finalizado: false,
       respondido: false,
       resultado: '',
-      respostaIncorreta: []
+      resposta: 4
     }
   },
   created(){
-    this.$http.get('http://localhost:3000/Suspeitos')
+    this.$http.get('http://localhost:5000/api/suspeitos')
     .then(res => res.json())
     .then(suspeitos => this.Suspeitos = suspeitos);
 
-    this.$http.get('http://localhost:3000/Locais')
+    this.$http.get('http://localhost:5000/api/locais')
     .then(res => res.json())
     .then(locais => this.Locais = locais);
 
-    this.$http.get('http://localhost:3000/Armas')
+    this.$http.get('http://localhost:5000/api/armas')
     .then(res => res.json())
     .then(armas => this.Armas = armas);
   },
   props: {
   },
   methods:{
-    iniciaInterrogatorio(){    
+    iniciaInterrogatorio(){
+      let solucao = {
+        SuspeitoId: 0,
+        LocalId: 0,
+        ArmaId: 0
+      }
+
       do{
-          this.SuspeitoSelected = Math.floor(Math.random() * this.Suspeitos.length);
+          solucao.SuspeitoId = Math.floor(Math.random() * this.Suspeitos.length);
 
-          this.LocalSelected = Math.floor(Math.random() * this.Locais.length);
-        
-          this.ArmaSelected = Math.floor(Math.random() * this.Armas.length);
+          solucao.LocalId = Math.floor(Math.random() * this.Locais.length);
 
-      }while(this.SuspeitoSelected == 0 || this.LocalSelected == 0 || this.ArmaSelected == 0);
+          solucao.ArmaId = Math.floor(Math.random() * this.Armas.length);
+
+      }while(solucao.SuspeitoId == 0 || solucao.LocalId == 0 || solucao.ArmaId == 0);
+
+      this.$http.post('http://localhost:5000/api/SolucaoCrimes', solucao)
+      .then(res => res.json())
+      .then(id => this.teoria.Id = id);
+
+      console.log(this.teoria);
+      console.log(solucao);
 
       this.iniciado = true;
     },
@@ -109,39 +120,50 @@ export default {
     novoCaso(){
       this.iniciado = false;
       this.finalizado = false;
+      this.respondido = false;
       this.resultado = "";
-      this.teoria.suspeito = 1;
-      this.teoria.local = 1;
-      this.teoria.arma = 1;
+      this.teoria.SuspeitoId = 1;
+      this.teoria.LocalId = 1;
+      this.teoria.ArmaId = 1;
     },
 
     retornoDaTeoria(){
       this.respondido = true;
-      this.respostaIncorreta = [];
-      if(this.teoria.suspeito == this.SuspeitoSelected &&
-         this.teoria.local == this.LocalSelected &&
-         this.teoria.arma == this.ArmaSelected){
-        this.finalizado = true;
-        this.resultado = "Parabéns inspetor! Você solucionou o caso!";
-      }
-      else{
-        if(this.teoria.suspeito != this.SuspeitoSelected){
-          this.respostaIncorreta.push("Suspeito incorreto!");
+
+
+      let solucao = {
+        Id: this.teoria.Id,
+        SuspeitoId: this.teoria.SuspeitoId,
+        LocalId: this.teoria.LocalId,
+        ArmaId: this.teoria.ArmaId
+      };
+
+      this.$http.put('http://localhost:5000/api/SolucaoCrimes', solucao)
+      .then(res => res.json())
+      .then(result => this.resposta = result);
+
+      switch(this.resposta){
+        case 0:
+          this.resultado = "Parabéns inspetor, o sr. solucionou o caso! Deseja iniciar uma nova investigação?";
+          this.finalizado = true;
+          break;
+        case 1:
+          this.resultado = "Suspeito incorreto!";
+          break;
+        case 2:
+          this.resultado = "Local incorreto!";
+          break;
+        case 3:
+          this.resultado = "Arma incorreta!";
+          break;
+        default:
+          this.resultado = this.resposta;
         }
-        if(this.teoria.local != this.LocalSelected){
-          this.respostaIncorreta.push("Local incorreto!");
-        }
-        if(this.teoria.arma != this.ArmaSelected){
-          this.respostaIncorreta.push("Arma incorreta!");
-        }
-        //console.log("Suspeito: " + this.SuspeitoSelected + "\nLocal: " + this.LocalSelected + "\nArma:" + this.ArmaSelected);
-        this.resultado = this.respostaIncorreta[Math.floor(Math.random() * this.respostaIncorreta.length)];
       }
     }
 
   }
   
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

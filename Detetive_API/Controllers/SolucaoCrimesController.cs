@@ -19,17 +19,16 @@ namespace Detetive_API.Controllers
 
         }
 
-        [HttpGet]
-        public async Task<ActionResult> CompareWithTheory(SolucaoCrime model)
+        [HttpPut]
+        public async Task<int> Put(SolucaoCrime model)
         {
             var solucao = await _repo.GetSolucaoCrime(model.Id);
-
 
             if(solucao.ArmaId == model.ArmaId &&
             solucao.LocalId == model.LocalId &&
             solucao.SuspeitoId == model.SuspeitoId){
                 
-                return Ok("0");
+                return 0;
             }
             else{
                 List<int> resultado = new List<int>();
@@ -38,17 +37,17 @@ namespace Detetive_API.Controllers
                     resultado.Add(1);
                 }
 
-                if(solucao.LocalId == model.LocalId){
+                if(solucao.LocalId != model.LocalId){
                     resultado.Add(2);
                 }
 
-                if(solucao.ArmaId == model.ArmaId){
+                if(solucao.ArmaId != model.ArmaId){
                     resultado.Add(3);
                 }
                 
                 var index = new Random().Next(resultado.Count);
 
-                return Ok(resultado[index]);
+                return resultado[index];
             }
         }
 
